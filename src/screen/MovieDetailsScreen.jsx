@@ -82,8 +82,8 @@ const MovieDetailsScreen = () => {
         <h4>Cast</h4>
         <Row >
           {credits.cast.slice(0, 5).map((castMember) => (
-            <Col xs={12} sm={6} md={4} lg={3} key={castMember.cast_id} className="mb-4 ">
-              <Card className="text-center">
+            <Col xs={12} sm={6} md={4} lg={3} key={castMember.cast_id} className="mb-4">
+              <Card className="text-center" style={{ backgroundColor: "#22254b", color:'white'}}>
                 <Card.Img
                   variant="top"
                   src={`https://image.tmdb.org/t/p/w300${castMember.profile_path}`}

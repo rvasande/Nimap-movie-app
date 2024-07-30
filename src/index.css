@@ -57,6 +57,8 @@ code {
   color: white;
 }
 
+
+
 @media (max-width: 768px) {
   .movie-details {
     text-align: center;
