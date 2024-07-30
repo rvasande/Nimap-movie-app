@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Container, Row, Col, Card, Alert } from "react-bootstrap";
 import { API_KEY, API_URL } from "../constant";
 
 const TopRatedScreen = () => {
   const [movies, setMovies] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -21,12 +23,24 @@ const TopRatedScreen = () => {
     fetchMovies();
   }, []);
 
+  const handleMovieClick = (id) => {
+    navigate(`/movie/${id}`);
+  };
+
   return (
     <Container className="mt-4">
       {movies.length > 0 ? (
         <Row>
           {movies.map((movie) => (
-            <Col key={movie.id} sm={6} md={4} lg={3} className="mb-4">
+            <Col
+              key={movie.id}
+              sm={6}
+              md={4}
+              lg={3}
+              className="mb-4"
+              onClick={() => handleMovieClick(movie.id)}
+              style={{ cursor: "pointer" }}
+            >
               <Card>
                 <Card.Img
                   variant="top"
