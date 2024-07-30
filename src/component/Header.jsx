@@ -20,11 +20,11 @@ const Header = () => {
             <Nav.Link href="/top-rated">Top-rated</Nav.Link>
             <Nav.Link href="/upcoming">Upcoming</Nav.Link>
           </Nav>
-          <Form inline className="search-form">
+          <Form inline className="search-form ">
             <FormControl
               type="text"
               placeholder="Search..."
-              className="mr-sm-2"
+              className="mr-sm-2 mx-2"
             />
             <Button variant="outline-light">Search</Button>
           </Form>

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Container, Row, Col, Card, Alert } from "react-bootstrap";
 import { API_KEY, API_URL } from "../constant";
-import CustomPagination from "../component/CustomPagination"; 
+import CustomPagination from "../component/CustomPagination";
 
 const HomeScreen = () => {
   const [movies, setMovies] = useState([]);
@@ -31,8 +31,10 @@ const HomeScreen = () => {
     navigate(`/movie/${id}`);
   };
 
+  // if (movies.length === 0) return <div className="text-center">Loading...</div>;
+
   return (
-    <Container className="mt-4">
+    <Container className="mt-4 ">
       {movies.length > 0 ? (
         <>
           <Row>
@@ -42,29 +44,34 @@ const HomeScreen = () => {
                 sm={6}
                 md={4}
                 lg={3}
-                className="mb-4"
+                className="mb-4 "
                 onClick={() => handleMovieClick(movie.id)}
                 style={{ cursor: "pointer" }}
               >
-                <Card>
+                <Card className="custom-card" style={{ border: "2px solid #22254b" , boxShadow: "0 4px 8px rgba(0, 0, 0, 0.9)" }}>
                   <Card.Img
                     variant="top"
                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                     alt={movie.title}
+                    className="custom-card-img"
                   />
-                  <Card.Body>
-                    <Card.Title>{movie.title}</Card.Title>
-                    <Card.Text>Rating: {movie.vote_average}</Card.Text>
+                  <Card.Body className="custom-card-body">
+                    <Card.Title className="custom-card-title">
+                      {movie.title}
+                    </Card.Title>
+                    <Card.Text className="custom-card-text">
+                      Rating: {movie.vote_average}
+                    </Card.Text>
                   </Card.Body>
                 </Card>
               </Col>
             ))}
+            <CustomPagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={setCurrentPage}
+            />
           </Row>
-          <CustomPagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={setCurrentPage}
-          />
         </>
       ) : (
         <Alert variant="danger" className="text-center">

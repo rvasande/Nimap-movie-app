@@ -57,6 +57,7 @@ const MovieDetailsScreen = () => {
                 src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
                 fluid
                 className="movie-poster"
+                alt={movie.title}
               />
             </Col>
             <Col md={8}>
@@ -88,6 +89,7 @@ const MovieDetailsScreen = () => {
                   variant="top"
                   src={`https://image.tmdb.org/t/p/w300${castMember.profile_path}`}
                   style={{ width: '150px', height: '150px', objectFit: 'cover', margin: '0 auto', marginTop: '10px' }}
+                  alt={castMember.name}
                 />
                 <Card.Body>
                   <Card.Title className="cast-name">{castMember.name}</Card.Title>

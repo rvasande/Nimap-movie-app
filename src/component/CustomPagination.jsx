@@ -9,14 +9,14 @@ const CustomPagination = ({ currentPage, totalPages, onPageChange }) => {
   };
 
   return (
-    <Pagination >
+    <Pagination className="my-4" >
       <Pagination.First onClick={() => handlePageChange(1)} disabled={currentPage === 1} />
       <Pagination.Prev onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} />
       
       {Array.from({ length: Math.min(totalPages, 10) }, (_, index) => {
         const page = index + 1;
         return (
-          <Pagination.Item
+          <Pagination.Item 
             key={page}
             active={page === currentPage}
             onClick={() => handlePageChange(page)}

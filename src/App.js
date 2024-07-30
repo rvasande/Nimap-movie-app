@@ -7,7 +7,8 @@ import MovieDetailsScreen from "./screen/MovieDetailsScreen";
 
 function App() {
   return (
-    <Router>
+ <div className="light-background">
+     <Router>
       <Header />
       <Routes>
         <Route path="/" element={<HomeScreen />} />
@@ -16,6 +17,7 @@ function App() {
         <Route path="/upcoming" element={<UpcomingScreen />} />
       </Routes>
     </Router>
+ </div>
   );
 }
 

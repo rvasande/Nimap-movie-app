@@ -46,25 +46,31 @@ const UpcomingScreen = () => {
                 onClick={() => handleMovieClick(movie.id)}
                 style={{ cursor: "pointer" }}
               >
-                <Card>
+                <Card className="custom-card" style={{ border: "2px solid #22254b" , boxShadow: "0 4px 8px rgba(0, 0, 0, 0.9)" }}>
                   <Card.Img
                     variant="top"
                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                     alt={movie.title}
+                    className="custom-card-img"
                   />
-                  <Card.Body>
-                    <Card.Title>{movie.title}</Card.Title>
-                    <Card.Text>Rating: {movie.vote_average}</Card.Text>
+                  <Card.Body className="custom-card-body">
+                    <Card.Title className="custom-card-title">
+                      {movie.title}
+                    </Card.Title>
+                    <Card.Text className="custom-card-text">
+                      Rating: {movie.vote_average}
+                    </Card.Text>
                   </Card.Body>
                 </Card>
               </Col>
             ))}
-          </Row>
-          <CustomPagination
+            <CustomPagination
             currentPage={currentPage}
             totalPages={totalPages}
             onPageChange={setCurrentPage}
           />
+          </Row>
+
         </>
       ) : (
         <Alert variant="danger" className="text-center">
