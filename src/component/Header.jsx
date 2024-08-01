@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{useState}from "react";
 import {
   Navbar,
   Nav,
@@ -8,7 +8,16 @@ import {
   Container,
 } from "react-bootstrap";
 
-const Header = () => {
+const Header = ({setSearchTerm}) => {
+  const [inputValue, setInputValue] = useState('');
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleSearch = () => {
+    setSearchTerm(inputValue);
+  };
   return (
     <Navbar variant="dark" expand="lg" className="header">
       <Container>
@@ -25,8 +34,9 @@ const Header = () => {
               type="text"
               placeholder="Search..."
               className="mr-sm-2 mx-2"
+              onChange={handleInputChange}
             />
-            <Button variant="outline-light">Search</Button>
+            <Button variant="outline-light" onClick={handleSearch}>Search</Button>
           </Form>
         </Navbar.Collapse>
       </Container>
