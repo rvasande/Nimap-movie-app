@@ -5,17 +5,21 @@ import HomeScreen from "./screen/HomeScreen";
 import TopRatedScreen from "./screen/TopRatedScreen";
 import UpcomingScreen from "./screen/UpcomingScreen";
 import MovieDetailsScreen from "./screen/MovieDetailsScreen";
-const Api_key = 'c45a857c193f6302f2b5061c3b85e743';
+import useDebounce from './utils/useDebounce'; 
+import { API_KEY } from './constant';
+
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-  console.log(searchTerm)
+
+  const debouncedSearchTerm = useDebounce(searchTerm, 500); 
+
   useEffect(() => {
-    if (searchTerm) {
+    if (debouncedSearchTerm) {
       const fetchMovies = async () => {
         try {
-          const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${Api_key}&language=en-US&query=${searchTerm}&page=1`);
+          const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${debouncedSearchTerm}&page=1`);
           const data = await response.json();
           setSearchResults(data.results || []);
         } catch (error) {
@@ -23,8 +27,10 @@ function App() {
         }
       };
       fetchMovies();
+    } else {
+      setSearchResults([]); 
     }
-  }, [searchTerm]);
+  }, [debouncedSearchTerm]);
 
   return (
     <div className="light-background">

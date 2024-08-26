@@ -40,6 +40,7 @@ const UpcomingScreen = ({ searchResults }) => {
     <Container className="mt-4">
       {movies.length > 0 ? (
         <>
+     
           <Row>
             {movies.map((movie) => (
               <Col

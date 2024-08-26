@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Container, Row, Col, Image, Badge, Card } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Image,
+  Badge,
+  Card,
+  Button,
+} from "react-bootstrap";
 import { API_KEY, API_URL } from "../constant";
 
 const MovieDetailsScreen = () => {
   const { id } = useParams();
+  const navigate = useNavigate(); // Use useNavigate hook
   const [movie, setMovie] = useState(null);
   const [credits, setCredits] = useState(null);
 
@@ -79,21 +88,52 @@ const MovieDetailsScreen = () => {
           </Row>
         </Container>
       </div>
-      <Container className="mt-4 ">
-        <h4>Cast</h4>
-        <Row >
+      <Container className="mt-4">
+        <Row>
+          <div className="d-flex justify-content-between align-items-center my-2 ">
+            <Button
+              // variant="light"
+              onClick={() => navigate(-1)}
+              style={{backgroundColor:'#22254b'}}
+            >
+              Back
+            </Button>
+            <h4>Cast</h4> 
+          </div>
+        </Row>
+        <Row>
           {credits.cast.slice(0, 5).map((castMember) => (
-            <Col xs={12} sm={6} md={4} lg={3} key={castMember.cast_id} className="mb-4">
-              <Card className="text-center" style={{ backgroundColor: "#22254b", color:'white'}}>
+            <Col
+              xs={12}
+              sm={6}
+              md={4}
+              lg={3}
+              key={castMember.cast_id}
+              className="mb-4"
+            >
+              <Card
+                className="text-center"
+                style={{ backgroundColor: "#22254b", color: "white" }}
+              >
                 <Card.Img
                   variant="top"
                   src={`https://image.tmdb.org/t/p/w300${castMember.profile_path}`}
-                  style={{ width: '150px', height: '150px', objectFit: 'cover', margin: '0 auto', marginTop: '10px' }}
+                  style={{
+                    width: "150px",
+                    height: "150px",
+                    objectFit: "cover",
+                    margin: "0 auto",
+                    marginTop: "10px",
+                  }}
                   alt={castMember.name}
                 />
                 <Card.Body>
-                  <Card.Title className="cast-name">{castMember.name}</Card.Title>
-                  <Card.Text className="cast-character">{castMember.character}</Card.Text>
+                  <Card.Title className="cast-name">
+                    {castMember.name}
+                  </Card.Title>
+                  <Card.Text className="cast-character">
+                    {castMember.character}
+                  </Card.Text>
                 </Card.Body>
               </Card>
             </Col>

@@ -28,7 +28,7 @@ const HomeScreen = ({ searchResults }) => {
       fetchMovies();
     } else {
       setMovies(searchResults);
-      setTotalPages(1); // assuming search results have only one page
+      setTotalPages(1); 
     }
   }, [currentPage, searchResults]);
 
